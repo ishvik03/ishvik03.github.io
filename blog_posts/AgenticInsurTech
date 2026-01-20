@@ -1,0 +1,77 @@
+1️⃣ The Real-World Problem: Insurance Customer Support at Scale
+
+Insurance support teams don’t struggle because questions are rare.
+They struggle because the same questions keep coming back — but never in the same way.
+
+Every day, agents handle requests about claim status, coverage details, billing disputes, and policy clarifications. On the surface, these look repetitive. In reality, each ticket differs based on policy type, customer history, region, or claim status.
+
+To answer a single ticket, agents often have to:
+
+dig through lengthy policy documents,
+
+search prior tickets or claim records,
+
+interpret internal rules and exclusions,
+
+decide whether the case can be resolved or escalated.
+
+At scale, this creates predictable problems:
+
+slow first response times during claim spikes,
+
+inconsistent answers across agents,
+
+high escalation rates for routine issues,
+
+long ramp-up time for new agents,
+
+rising cost per support ticket.
+
+Traditional chatbots fall short because insurance questions demand grounded answers tied to specific policy language and historical context, not generic responses. As a result, many teams remain stuck with manual workflows that don’t scale.
+
+This is where an agentic AI system becomes compelling — not to replace agents, but to work alongside them by retrieving the right context, reasoning over it, and helping teams respond faster and more consistently.
+
+
+
+
+2️⃣ Defining the Goal: What the Agentic System Does (and Does Not Do)
+
+The goal of this system is not to replace human insurance agents or fully automate customer support. Insurance decisions often involve regulatory constraints, financial risk, and nuanced judgment that must remain human-led.
+
+Instead, the agentic AI is designed to act as a decision-support copilot embedded directly into the support workflow.
+
+What the agent is responsible for
+
+Classifying incoming tickets by intent (claims, billing, coverage, policy clarification)
+
+Retrieving relevant policy clauses, past tickets, and internal knowledge
+
+Grounding responses in source documents to reduce hallucinations
+
+Drafting suggested replies or internal summaries for agents
+
+Providing confidence signals and escalation recommendations
+
+What the agent explicitly does not do
+
+Make final coverage or payout decisions
+
+Override compliance or regulatory rules
+
+Send responses directly to customers without human review
+
+Act on incomplete or low-confidence context
+
+Why this scope matters
+
+By clearly separating retrieval, reasoning, and recommendation from final decision-making, the system remains:
+
+safer to deploy,
+
+easier to trust,
+
+compliant with insurance workflows,
+
+and more likely to be adopted by support teams.
+
+This framing ensures the AI augments human agents rather than becoming a brittle automation that fails under edge cases.
