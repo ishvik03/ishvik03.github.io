@@ -1,98 +1,59 @@
 :root {
-  --bg: #0b0f19;
-  --card: #11182a;
-  --text: #e6e9f2;
-  --muted: #a8b0c2;
-  --border: rgba(255,255,255,0.10);
-  --link: #9bd4ff;
-  --tag: rgba(155,212,255,0.14);
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --text: #e6e6e6;
+  --muted: #a0a0a0;
+  --border: rgba(255,255,255,0.08);
+  --accent: #ffffff;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.65;
 }
 
 .container {
-  width: min(920px, calc(100% - 32px));
+  max-width: 760px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
-.site-header {
-  padding: 42px 0 18px;
+.header {
+  padding: 48px 0 24px;
   border-bottom: 1px solid var(--border);
 }
 
-h1 { margin: 0; font-size: 2rem; }
-.subtitle { margin: 8px 0 14px; color: var(--muted); }
+h1 {
+  font-size: 2rem;
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
 
 .nav {
   display: flex;
+  gap: 14px;
   flex-wrap: wrap;
-  gap: 12px;
 }
 
 .nav a {
   color: var(--muted);
   text-decoration: none;
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
-.nav a:hover { color: var(--text); }
-.nav a.active { color: var(--text); background: rgba(255,255,255,0.06); }
-
-main { padding: 28px 0 60px; }
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 22px;
-  margin: 0 0 18px;
-}
-
-.post-list { display: grid; gap: 12px; }
-
-.post-item {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 14px;
-  text-decoration: none;
-  color: var(--text);
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: rgba(255,255,255,0.03);
-}
-
-.post-item:hover { background: rgba(255,255,255,0.06); }
-
-.post-item h3 { margin: 0 0 6px; font-size: 1.05rem; }
-.post-item p { margin: 0; color: var(--muted); }
-
-.tag {
-  font-size: 0.8rem;
   padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--tag);
-  color: var(--link);
-  white-space: nowrap;
+  border-radius: 8px;
 }
 
-.article h2 { margin-top: 28px; }
-.article ul { margin-top: 8px; }
-
-.footer {
-  padding: 18px 0;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-}
+.nav a.active,
+.nav a:hover {
+  color: var(--accent)
