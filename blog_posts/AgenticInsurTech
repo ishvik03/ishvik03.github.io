@@ -1,19 +1,25 @@
-1️⃣ The Real-World Problem: Insurance Customer Support at Scale
+## 1️⃣ The Challenge of Scaling Insurance Customer Support in the Real World
 
 Insurance support teams don’t struggle because questions are rare.
-They struggle because the same questions keep coming back — but never in the same way.
+They struggle because the same questions keep coming back, but never in the same way.
 
-Every day, agents handle requests about claim status, coverage details, billing disputes, and policy clarifications. On the surface, these look repetitive. In reality, each ticket differs based on policy type, customer history, region, or claim status.
+Every day, agents handle questions such as:
 
-To answer a single ticket, agents often have to:
+- What is the current status of my claim?
+- Is this treatment or service covered under my policy?
+- Why was this charge applied to my bill?
+- Can you explain this policy clause or exclusion?
+- Why was my claim partially or fully denied?
+- What documents are still required to proceed?
 
-dig through lengthy policy documents,
+On the surface, these may look repetitive but in reality, each ticket differs based on policy type, customer history, region, or claim status.
 
-search prior tickets or claim records,
+To resolve a single support ticket, agents often need to:
 
-interpret internal rules and exclusions,
-
-decide whether the case can be resolved or escalated.
+- Dig through lengthy and complex policy documents  
+- Search prior tickets and historical claim records  
+- Interpret internal rules, exceptions, and policy exclusions  
+- Decide whether the issue can be resolved immediately or requires escalation
 
 At scale, this creates predictable problems:
 
@@ -75,3 +81,99 @@ compliant with insurance workflows,
 and more likely to be adopted by support teams.
 
 This framing ensures the AI augments human agents rather than becoming a brittle automation that fails under edge cases.
+
+
+
+3️⃣ System Architecture: How the Agentic Workflow Actually Works
+
+The system is designed as a retrieval-first, agent-assisted workflow, not a single prompt hitting an LLM.
+
+At a high level, the architecture separates data ingestion, retrieval, reasoning, and delivery into explicit stages.
+
+1. Data Ingestion & Normalization
+
+The system continuously ingests multiple data sources used by insurance support teams:
+
+Policy documents (PDFs)
+
+Historical support tickets
+
+Claim metadata (policy type, region, status)
+
+Documents are parsed, cleaned, and normalized into structured records. Large policy PDFs are chunked into semantically meaningful sections rather than arbitrary token windows, preserving clause-level context.
+
+Each chunk is enriched with metadata such as:
+
+policy type
+
+jurisdiction / region
+
+claim status
+
+document source and version
+
+This ensures downstream retrieval is both relevant and auditable.
+
+2. Embedding & Indexing Layer
+
+All chunks are embedded and indexed in a vector database optimized for low-latency retrieval.
+
+Instead of relying on raw semantic similarity alone, the system applies hybrid retrieval:
+
+vector similarity for semantic relevance
+
+metadata filters to constrain scope (e.g., policy type + region)
+
+This reduces noisy retrieval and ensures the agent reasons over applicable policy language, not just “similar-sounding” text.
+
+3. Agent-Orchestrated Retrieval
+
+When a new support ticket arrives, the agent performs a structured sequence:
+
+Classify ticket intent (claims, billing, coverage, etc.)
+
+Generate targeted retrieval queries
+
+Fetch top-k relevant chunks using metadata-aware filters
+
+Validate retrieved context for completeness and confidence
+
+Only grounded, high-confidence context is passed forward.
+
+This step is critical — the agent’s main job is deciding what to look at, not just answering.
+
+4. Reasoning & Response Drafting
+
+The LLM is used only after context is retrieved.
+
+The agent constructs a structured prompt that includes:
+
+the customer question
+
+retrieved policy clauses
+
+relevant historical cases
+
+system instructions and safety constraints
+
+The model generates:
+
+a suggested agent response, or
+
+an internal summary with escalation guidance
+
+All outputs are explicitly grounded in retrieved sources to reduce hallucination risk.
+
+5. Delivery via Internal APIs
+
+The final output is served through internal APIs that integrate with existing support tools.
+
+Responses include:
+
+the drafted answer
+
+cited policy references
+
+confidence and escalation signals
+
+Human agents remain in the loop, reviewing and approving responses before customer-facing action.
